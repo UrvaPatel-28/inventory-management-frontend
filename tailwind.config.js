@@ -1,5 +1,8 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires, no-undef
+const { withMaterialColors } = require('tailwind-material-colors');
+
 /** @type {import('tailwindcss').Config} */
-export default {
+const config = {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
@@ -10,3 +13,6 @@ export default {
   plugins: [],
 }
 
+export default withMaterialColors(config, {
+  primary : "#008bff"
+})
