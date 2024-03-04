@@ -1,6 +1,6 @@
 import { useRef, type FormEvent, useState } from "react";
-import { UserDepartment } from "../../types/user-department.type";
-import { UserRole } from "../../types/user-role.type";
+import { UserDepartment } from "../../lib/types/user-department.type";
+import { UserRole } from "../../lib/types/user-role.type";
 import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
