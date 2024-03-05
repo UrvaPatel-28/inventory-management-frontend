@@ -3,12 +3,12 @@ import { UserDepartment } from "../../lib/types/user-department.type";
 import { UserRole } from "../../lib/types/user-role.type";
 import { Link, useNavigate } from "react-router-dom";
 
-const Register = () => {
+const SignUp = () => {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   const formRef = useRef<HTMLFormElement | null>(null);
-  const handleFormData = async (e: FormEvent<HTMLFormElement>) => {
+  const handleSignupFormData = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(formRef.current!);
     const formFeilds = Object.fromEntries(formData.entries());
@@ -26,7 +26,7 @@ const Register = () => {
       if (!data.success) {
         setError(data.message[0]);
       } else {
-        navigate("/login");
+        navigate("/signup");
       }
     } catch (error) {
       console.log("error", error);
@@ -35,7 +35,7 @@ const Register = () => {
 
   return (
     <div className="flex justify-center flex-col items-center h-screen">
-      <form ref={formRef} action="" onSubmit={handleFormData}>
+      <form ref={formRef} action="" onSubmit={handleSignupFormData}>
         <div className="w-96 p-8 bg-gray-100 rounded shadow-md">
           <h2 className="text-2xl font-semibold mb-4">Register</h2>
           <input
@@ -72,11 +72,16 @@ const Register = () => {
             <select
               className="w-full p-2.5 text-gray-500 bg-white border rounded-md shadow-sm outline-none appearance-none focus:border-indigo-600"
               name="department"
+              defaultValue="userDepartmentDisable"
             >
-              <option>--Selece Your Department--</option>
-              <option>{UserDepartment.MANUFACTURING}</option>
-              <option>{UserDepartment.PROCUREMNENT}</option>
-              <option>{UserDepartment.SALES}</option>
+              <option  disabled value="userDepartmentDisable" >
+                -- Select Your Department --
+              </option>
+              {
+                Object.keys(UserDepartment).map((userDepartment)=>{
+                  return <option key={userDepartment} value={userDepartment}>{userDepartment}</option>
+                })
+              }
             </select>
           </div>
 
@@ -84,11 +89,19 @@ const Register = () => {
             <select
               className="w-full p-2.5 text-gray-500 bg-white border rounded-md shadow-sm outline-none appearance-none focus:border-indigo-600"
               name="role"
+              defaultValue="userRoleDisable"
             >
-              <option>--Selece Your Role--</option>
-              <option>{UserRole.DEPARTMENT_HEAD}</option>
+              <option disabled  value="userRoleDisable">
+                -- Select Your Role --
+              </option>
+              {
+                Object.keys(UserRole).map((userRole)=>{
+                  return <option key={userRole} value={userRole}>{userRole}</option>
+                })
+              }
+              {/* <option value={UserRole}>{UserRole.DEPARTMENT_HEAD}</option>
               <option>{UserRole.MANAGER}</option>
-              <option> {UserRole.OPERATOR}</option>
+              <option> {UserRole.OPERATOR}</option> */}
             </select>
           </div>
 
@@ -96,10 +109,10 @@ const Register = () => {
             type="submit"
             className="w-full bg-on-primary-dark text-primary-container-light p-2 rounded hover:bg-green-600 mb-4"
           >
-            Register
+            Signup
           </button>
           <p>
-            Already have account? <Link to="/login">Login</Link>
+            Already have account? <Link to="/signin">Signin</Link>
           </p>
         </div>
         <p className="text-error-light mt-4">{error}</p>
@@ -108,4 +121,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default SignUp;
