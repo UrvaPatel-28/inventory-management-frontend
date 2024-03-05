@@ -26,7 +26,7 @@ const SignUp = () => {
       if (!data.success) {
         setError(data.message[0]);
       } else {
-        navigate("/signup");
+        navigate("/signin");
       }
     } catch (error) {
       console.log("error", error);
@@ -77,7 +77,7 @@ const SignUp = () => {
               <option disabled value="userDepartmentDisable">
                 -- Select Your Department --
               </option>
-              {Object.keys(UserDepartment).map((userDepartment) => {
+              {Object.values(UserDepartment).map((userDepartment) => {
                 return (
                   <option key={userDepartment} value={userDepartment}>
                     {userDepartment}
@@ -96,7 +96,7 @@ const SignUp = () => {
               <option disabled value="userRoleDisable">
                 -- Select Your Role --
               </option>
-              {Object.keys(UserRole).map((userRole) => {
+              {Object.values(UserRole).map((userRole) => {
                 return (
                   <option key={userRole} value={userRole}>
                     {userRole}
