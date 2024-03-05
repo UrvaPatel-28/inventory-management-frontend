@@ -74,14 +74,16 @@ const SignUp = () => {
               name="department"
               defaultValue="userDepartmentDisable"
             >
-              <option  disabled value="userDepartmentDisable" >
+              <option disabled value="userDepartmentDisable">
                 -- Select Your Department --
               </option>
-              {
-                Object.keys(UserDepartment).map((userDepartment)=>{
-                  return <option key={userDepartment} value={userDepartment}>{userDepartment}</option>
-                })
-              }
+              {Object.keys(UserDepartment).map((userDepartment) => {
+                return (
+                  <option key={userDepartment} value={userDepartment}>
+                    {userDepartment}
+                  </option>
+                );
+              })}
             </select>
           </div>
 
@@ -91,17 +93,16 @@ const SignUp = () => {
               name="role"
               defaultValue="userRoleDisable"
             >
-              <option disabled  value="userRoleDisable">
+              <option disabled value="userRoleDisable">
                 -- Select Your Role --
               </option>
-              {
-                Object.keys(UserRole).map((userRole)=>{
-                  return <option key={userRole} value={userRole}>{userRole}</option>
-                })
-              }
-              {/* <option value={UserRole}>{UserRole.DEPARTMENT_HEAD}</option>
-              <option>{UserRole.MANAGER}</option>
-              <option> {UserRole.OPERATOR}</option> */}
+              {Object.keys(UserRole).map((userRole) => {
+                return (
+                  <option key={userRole} value={userRole}>
+                    {userRole}
+                  </option>
+                );
+              })}
             </select>
           </div>
 
