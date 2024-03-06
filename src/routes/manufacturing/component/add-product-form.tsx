@@ -2,7 +2,7 @@ import { ProductCategory } from "../../../lib/types/product-category.enum";
 
 export const AddProductForm = () => {
   return (
-    <form method="POST" action="">
+    <form method="POST" action="http://localhost:3000/manufacturing/add-new-product">
       <label htmlFor="name">Product Name: </label>
       <input type="text" name="name"/>
       <label htmlFor="name">Product Price: </label>
