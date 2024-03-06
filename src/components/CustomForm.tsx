@@ -5,8 +5,8 @@ const error = (msg: string) => {
 };
 
 type CustomFormExtraType = {
-  handleData: (data: Record<string, unknown>) => void;
-}
+  handleData: (data: Record<string, unknown>, el: HTMLFormElement) => void;
+};
 
 const CustomForm = ({
   action,
@@ -14,10 +14,11 @@ const CustomForm = ({
   method,
   handleData,
   ...props
-}: CustomFormExtraType & React.DetailedHTMLProps<
-  React.FormHTMLAttributes<HTMLFormElement>,
-  HTMLFormElement
->) => {
+}: CustomFormExtraType &
+  React.DetailedHTMLProps<
+    React.FormHTMLAttributes<HTMLFormElement>,
+    HTMLFormElement
+  >) => {
   const formRef = useRef<HTMLFormElement>(null);
   const SubmitHandler = (e: FormEvent<HTMLFormElement>) => {
     const formEl = formRef.current ?? error("Form Ref is INVALID!");
@@ -25,18 +26,15 @@ const CustomForm = ({
     formEl.reportValidity();
     e.preventDefault();
 
-    const data = Object.fromEntries(new FormData(formEl).entries());
+    const data = new FormData(formEl);
 
-    fetch(action ?? error('Action is null, No URL to use.'), { 
-      body: JSON.stringify(data),
+    fetch(action ?? error("Action is null, No URL to use."), {
+      body: data,
       method: method,
-      headers: {
-        'Content-Type':'application/json'
-      },
-      credentials: "include"
-     })
-      .then(r => r.json())
-      .then(json => handleData(json))
+      credentials: "include",
+    })
+      .then((r) => r.json())
+      .then((json) => handleData(json, formEl));
   };
   return (
     <form ref={formRef} onSubmit={SubmitHandler} {...props}>
