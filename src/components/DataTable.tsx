@@ -1,6 +1,7 @@
 import { twMerge } from "tailwind-merge";
+import { JSONObject } from "../lib/types/json-value.type";
 
-const DataTable = ({ data }: { data: Record<string, unknown>[] }) => {
+const DataTable = ({ data }: { data: JSONObject[] }) => {
   if (data.length === 0) {
     return <div className="w-full text-center">Empty</div>;
   }
@@ -41,7 +42,7 @@ const DataTable = ({ data }: { data: Record<string, unknown>[] }) => {
   );
 };
 
-const VerticalTable = ({ data }: { data: Record<string, unknown> }) => {
+const VerticalTable = ({ data }: { data: JSONObject }) => {
   return (
     <div className="overflow-hidden h-full rounded-3xl border border-outline">
       <table className="w-full table-auto h-full">
@@ -59,7 +60,13 @@ const VerticalTable = ({ data }: { data: Record<string, unknown> }) => {
                       key.endsWith("id") && "line-clamp-1 py-0"
                     )}
                   >
-                    {value}
+                    {typeof value != "object" ? (
+                      value.toString()
+                    ) : Array.isArray(value) ? (
+                      <DataTable data={value} />
+                    ) : (
+                      <VerticalTable data={value} />
+                    )}
                   </span>
                 </td>
               </tr>
