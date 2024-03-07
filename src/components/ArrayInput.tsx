@@ -24,6 +24,7 @@ const ArrayInput = ({
       <div className="flex">
         <span className="grow text-2xl font-bold">{label}</span>
         <button
+          type="button"
           className="bg-secondary w-fit flex p-2 rounded-full items-center self-end"
           onClick={() => addId()}
         >
