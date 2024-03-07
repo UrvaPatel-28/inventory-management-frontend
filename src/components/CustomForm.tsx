@@ -1,8 +1,19 @@
-import { FormEvent, useRef } from "react";
+import { FormEvent, useRef, useState } from "react";
+import ErrorHolder from "./ErrorHolder";
 
-const error = (msg: string) => {
+const throwErr = (msg: string) => {
   throw new Error(msg);
 };
+
+type ApiResponse =
+  | {
+      success: true;
+      data: unknown;
+    }
+  | {
+      success: false;
+      message: string;
+    };
 
 type CustomFormExtraType = {
   handleData: (data: Record<string, unknown>, el: HTMLFormElement) => void;
@@ -19,26 +30,39 @@ const CustomForm = ({
     React.FormHTMLAttributes<HTMLFormElement>,
     HTMLFormElement
   >) => {
+  const [error, setError] = useState<
+    string[] | string | null | Record<string, unknown>
+  >(null);
   const formRef = useRef<HTMLFormElement>(null);
   const SubmitHandler = (e: FormEvent<HTMLFormElement>) => {
-    const formEl = formRef.current ?? error("Form Ref is INVALID!");
+    const formEl = formRef.current ?? throwErr("Form Ref is INVALID!");
     formEl.checkValidity();
     formEl.reportValidity();
     e.preventDefault();
 
     const data = new FormData(formEl);
+    const urlEncoded = new URLSearchParams(data);
 
-    fetch(action ?? error("Action is null, No URL to use."), {
-      body: data,
+    fetch(action ?? throwErr("Action is null, No URL to use."), {
+      body: urlEncoded,
       method: method,
       credentials: "include",
     })
       .then((r) => r.json())
-      .then((json) => handleData(json, formEl));
+      .then((json: ApiResponse) => {
+        if (json.success) {
+          handleData(json, formEl);
+          setError(null)
+        } else {
+          setError(json.message);
+        }
+      });
   };
   return (
     <form ref={formRef} onSubmit={SubmitHandler} {...props}>
       {children}
+
+      {error && <ErrorHolder errors={error} />}
     </form>
   );
 };
