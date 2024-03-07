@@ -37,6 +37,7 @@ const Navbar = () => {
               </NavLink>
             </>
           ) : (
+            // TODO: call the logout endpoint in API
             <NavLink
               onClick={() => dispatch(logout())}
               to="/signin"
