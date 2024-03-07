@@ -9,43 +9,42 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="bg-gray-800 p-4  bg-on-primary-dark">
-        <div className="container mx-auto flex justify-between items-center ">
-          <div className="text-white text-xl font-semibold">Inventory</div>
+      <nav className="p-4 bg-primary-container flex text-on-primary-container">
+        <div className="text-white text-xl font-semibold">Inventory</div>
 
-          <div className="space-x-4">
-            <NavLink to="/" className="text-white hover:text-gray-300">
-              Home
+        <div className="ml-auto flex gap-4">
+          <NavLink
+            to="/"
+            className="hover:bg-primary-container-hover py-1 rounded-full px-3"
+          >
+            Home
+          </NavLink>
+
+          {!user ? (
+            <>
+              <NavLink
+                to="/signin"
+                className="hover:bg-primary-container-hover py-1 rounded-full px-3"
+              >
+                SignIn
+              </NavLink>
+
+              <NavLink
+                to="/signup"
+                className="hover:bg-primary-container-hover py-1 rounded-full px-3"
+              >
+                SignUp
+              </NavLink>
+            </>
+          ) : (
+            <NavLink
+              onClick={() => dispatch(logout())}
+              to="/signin"
+              className="hover:bg-primary-container-hover py-1 rounded-full px-3"
+            >
+              Logout
             </NavLink>
-
-            {!user ? (
-              <>
-                <NavLink
-                  to="/signin"
-                  className="text-white hover:text-gray-300"
-                >
-                  SignIn
-                </NavLink>
-
-                <NavLink
-                  to="/signup"
-                  className="text-white hover:text-gray-300"
-                >
-                  SignUp
-                </NavLink>
-              </>
-            ) : (
-              <>
-                <NavLink
-                  onClick={() => dispatch(logout())}
-                  to="/signin"
-                  className="text-white hover:text-gray-300"
-                >
-                  Logout
-                </NavLink>
-              </>
-            )}
-          </div>
+          )}
         </div>
       </nav>
     </>
