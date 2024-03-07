@@ -1,28 +1,30 @@
-const AddMachine = () => {
+import AutoCompleteInput from "../../../components/AutoCompleteInput";
+import CustomForm from "../../../components/CustomForm";
+import { ApiSuggestions } from "../../../lib/Api";
+import { API_HOST } from "../../../lib/Constants";
+
+const ImportRawMaterialForm = () => {
   return (
-    <>
-      <form
-        action="http://localhost:3000/procurement/import-raw-material"
-        method="POST"
-      >
-        <label htmlFor="rawMaterial_id">Raw material</label>
-        <input
-          type="text"
-          name="rawMaterial_id"
-          placeholder="Search rae material"
-        />
-        <label htmlFor="Count">Count</label>
-        <input type="number" name="count" placeholder="Count of raw material" />
-        <label htmlFor="total_cost">Total cost</label>
-        <input
-          type="number"
-          name="total_cost"
-          placeholder="Total cost of raw material"
-        />
-        <button type="submit">Add</button>
-      </form>
-    </>
+    <CustomForm
+      className="custom-form"
+      handleData={(e) => console.log(e)} // TODO: show notification
+      action={`${API_HOST}/procurement/import-raw-material`}
+      method="POST"
+    >
+      <AutoCompleteInput
+        getSuggestions={(q) => ApiSuggestions.getRawMaterialSuggestions(q)}
+        name="raw_material_id"
+        placeholder="Search raw material"
+      />
+      <input type="number" name="count" placeholder="Count of raw material" />
+      <input
+        type="number"
+        name="total_cost"
+        placeholder="Total cost of raw material"
+      />
+      <button type="submit">Add</button>
+    </CustomForm>
   );
 };
 
-export default AddMachine;
+export default ImportRawMaterialForm;

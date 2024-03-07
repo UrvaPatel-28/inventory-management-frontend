@@ -1,19 +1,10 @@
 import { FormEvent, useRef, useState } from "react";
 import ErrorHolder from "./ErrorHolder";
+import { ApiResponse } from "../lib/Api";
 
 const throwErr = (msg: string) => {
   throw new Error(msg);
 };
-
-type ApiResponse =
-  | {
-      success: true;
-      data: unknown;
-    }
-  | {
-      success: false;
-      message: string;
-    };
 
 type CustomFormExtraType = {
   handleData: (data: Record<string, unknown>, el: HTMLFormElement) => void;
@@ -49,7 +40,7 @@ const CustomForm = ({
       credentials: "include",
     })
       .then((r) => r.json())
-      .then((json: ApiResponse) => {
+      .then((json: ApiResponse<unknown>) => {
         if (json.success) {
           handleData(json, formEl);
           setError(null)

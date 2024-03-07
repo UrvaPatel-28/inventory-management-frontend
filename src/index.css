@@ -9,10 +9,10 @@
 }
 
 .custom-form {
-  @apply flex flex-col gap-3 max-w-96 w-full;
+  @apply flex flex-col gap-3 max-w-2xl w-full;
 }
 
-.custom-form input {
+.custom-form input, .custom-form select {
   @apply bg-surface p-2 border rounded;
 }
 

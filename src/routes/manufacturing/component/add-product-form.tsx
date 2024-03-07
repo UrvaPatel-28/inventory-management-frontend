@@ -1,24 +1,41 @@
+import CustomForm from "../../../components/CustomForm";
+import { API_HOST } from "../../../lib/Constants";
 import { ProductCategory } from "../../../lib/types/product-category.enum";
 
-export const AddProductForm = () => {
+const AddProductForm = () => {
   return (
-    <form method="POST" action="http://localhost:3000/manufacturing/add-new-product">
-      <label htmlFor="name">Product Name: </label>
-      <input type="text" name="name"/>
-      <label htmlFor="name">Product Price: </label>
-      <input type="number" name="price" min={0}/>
-      <label htmlFor="model">Product Model: </label>
-      <input type="text" name="model"/>
-      <label htmlFor="variant">Product Variant: </label>
-      <input type="text" name="variant"/>
-      <label htmlFor="category">Product Category:</label>
-      <select name="category" defaultValue="default">
-        <option value="default" disabled>select</option>
-        {Object.values(ProductCategory).map(category => {
-          return (<option value={category}>{category}</option>);
+    <CustomForm
+      className="custom-form"
+      method="POST"
+      handleData={(e) => console.log(e)} //TODO: show notification
+      action={`${API_HOST}/manufacturing/add-new-product`}
+    >
+      <input type="text" name="name" placeholder="Product Name" required />
+      <input
+        type="number"
+        name="price"
+        min={0}
+        placeholder="Product Price"
+        required
+      />
+      <input type="text" name="model" placeholder="Product Model" required />
+      <input
+        type="text"
+        name="variant"
+        placeholder="Product Variant"
+        required
+      />
+      <select name="category" defaultValue="default" required>
+        <option value="default" disabled>
+          Select Product Category
+        </option>
+        {Object.values(ProductCategory).map((category) => {
+          return <option value={category}>{category}</option>;
         })}
       </select>
-      <input type="submit" value="Add Product"></input>
-    </form>
+      <button type="submit">Add Product</button>
+    </CustomForm>
   );
-}
+};
+
+export default AddProductForm;

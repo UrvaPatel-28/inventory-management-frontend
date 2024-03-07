@@ -35,11 +35,13 @@ const SuggestionHolder = ({
 const AutoCompleteInput = ({
   name,
   placeholder,
+  required,
   getSuggestions,
 }: {
-  getSuggestions: (query: string) => Promise<SuggestionEntry[]>,
-  name: string,
-  placeholder: string,
+  getSuggestions: (query: string) => Promise<SuggestionEntry[]>;
+  name: string;
+  required?: boolean;
+  placeholder: string;
 }) => {
   const [sugg, setSugg] = useState<SuggestionEntry[]>([]);
   const uuidInput = useRef<HTMLInputElement>(null);
@@ -67,6 +69,7 @@ const AutoCompleteInput = ({
         placeholder="UUID of the chosen entry"
         name={name}
         readOnly
+        required={required}
       />
       <input
         ref={displayInput}
@@ -78,6 +81,7 @@ const AutoCompleteInput = ({
         }
         className="bg-surface text-on-surface p-2 border rounded-sm outline-primary w-full"
         type="text"
+        required={required}
       />
 
       <SuggestionHolder

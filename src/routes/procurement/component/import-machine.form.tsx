@@ -1,23 +1,35 @@
+import AutoCompleteInput from "../../../components/AutoCompleteInput";
+import CustomForm from "../../../components/CustomForm";
+import { ApiSuggestions } from "../../../lib/Api";
+import { API_HOST } from "../../../lib/Constants";
+
 const ImportMachine = () => {
   return (
-    <>
-      <form
-        action="http://localhost:3000/procurement/import-machine"
-        method="POST"
-      >
-        <label htmlFor="machine_id">Machine</label>
-        <input type="text" name="machine_id" placeholder="Search machine" />
-        <label htmlFor="Count">Count</label>
-        <input type="number" name="count" placeholder="Count of machine" />
-        <label htmlFor="total_cost">Total cost</label>
-        <input
-          type="number"
-          name="total_cost"
-          placeholder="Total cost of machine"
-        />
-        <button type="submit">Add</button>
-      </form>
-    </>
+    <CustomForm
+      className="custom-form"
+      handleData={(e) => console.log(e)} // TODO: show notification
+      action={`${API_HOST}/procurement/import-machine`}
+      method="POST"
+    >
+      <AutoCompleteInput
+        name="machine_id"
+        placeholder="Search machine"
+        getSuggestions={(q) => ApiSuggestions.getMachineSuggestions(q)}
+      />
+      <input
+        type="number"
+        name="count"
+        placeholder="Count of machine"
+        required
+      />
+      <input
+        type="number"
+        name="total_cost"
+        placeholder="Total cost of machine"
+        required
+      />
+      <button type="submit">Add</button>
+    </CustomForm>
   );
 };
 
