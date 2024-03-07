@@ -34,10 +34,12 @@ const SuggestionHolder = ({
 
 const AutoCompleteInput = ({
   name,
+  placeholder,
   getSuggestions,
 }: {
   getSuggestions: (query: string) => Promise<SuggestionEntry[]>,
   name: string,
+  placeholder: string,
 }) => {
   const [sugg, setSugg] = useState<SuggestionEntry[]>([]);
   const uuidInput = useRef<HTMLInputElement>(null);
@@ -60,7 +62,7 @@ const AutoCompleteInput = ({
     <div className="relative flex gap-4">
       <input
         ref={uuidInput}
-        className="bg-surface-variant p-2 w-full text-on-surface-variant"
+        className="!bg-surface-variant p-2 w-full text-on-surface-variant"
         type="text"
         placeholder="UUID of the chosen entry"
         name={name}
@@ -68,6 +70,7 @@ const AutoCompleteInput = ({
       />
       <input
         ref={displayInput}
+        placeholder={placeholder}
         onChange={(e) =>
           getSuggestions((e.target as HTMLInputElement).value).then((x) =>
             setSugg(x)
