@@ -11,40 +11,21 @@ const SignUp = () => {
     <div className="flex justify-center flex-col items-center h-screen">
       <CustomForm
         action={`${API_HOST}/auth/signup`}
-        className="flex flex-col gap-3 max-w-96 w-full"
+        className="custom-form"
         method="POST"
         handleData={() => navigate("/signin")}
       >
         <h2 className="text-2xl font-semibold mb-4">Register</h2>
-        <input
-          name="name"
-          type="text"
-          placeholder="Enter Username"
-          className="bg-surface p-2 border rounded"
-          required
-        />
-        <input
-          name="email"
-          className="bg-surface p-2 border rounded"
-          type="email"
-          placeholder="Enter Email"
-          required
-        />
+        <input name="name" type="text" placeholder="Enter Username" required />
+        <input name="email" type="email" placeholder="Enter Email" required />
         <input
           name="password"
           type="password"
           placeholder="Password"
-          className="bg-surface p-2 border rounded"
           required
         />
 
-        <input
-          name="address"
-          type="text"
-          placeholder="Enter Adress"
-          className="bg-surface p-2 border rounded"
-          required
-        />
+        <input name="address" type="text" placeholder="Enter Adress" required />
 
         <select
           className="bg-surface p-2 border rounded"
@@ -82,12 +63,7 @@ const SignUp = () => {
             })}
         </select>
 
-        <button
-          type="submit"
-          className="w-full bg-primary font-bold p-2 rounded-full"
-        >
-          Sign Up
-        </button>
+        <button type="submit">Sign Up</button>
         <p>
           Already have account? <Link to="/signin">Signin</Link>
         </p>

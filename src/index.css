@@ -7,3 +7,15 @@
   flex-direction: column;
   height: 100vh;
 }
+
+.custom-form {
+  @apply flex flex-col gap-3 max-w-96 w-full;
+}
+
+.custom-form input {
+  @apply bg-surface p-2 border rounded;
+}
+
+.custom-form button[type="submit"] {
+  @apply w-full bg-primary font-bold p-2 rounded-full uppercase;
+}
