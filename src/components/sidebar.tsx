@@ -35,6 +35,10 @@ export const Sidebar = () => {
       label: "sales",
       route: "/sales",
     },
+    {
+      label: "Approve Requests",
+      route: "/approve-requests",
+    }
   ].map((btnInfo) => {
     return (
       <SidebarBtn

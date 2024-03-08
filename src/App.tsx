@@ -13,6 +13,7 @@ import AddProductPage from "./routes/products/page";
 import ManufactureProductPage from "./routes/product-manufacturing/page";
 import AddSalesPage from "./routes/sales/page";
 import AddRawMaterialPage from "./routes/raw-material/page";
+import ApproveRequestsPage from "./routes/approve-requests/page";
 
 function App() {
   const user = useSelector((state: RootState) => state.auth.value);
@@ -49,6 +50,9 @@ function App() {
 
               {/* SALES */}
               <Route path="/sales" element={<AddSalesPage />} />
+
+              {/* REQUESTS APPRROVAL */}
+              <Route path="/approve-requests" element={<ApproveRequestsPage />} />
 
               {/* 404 Not Found */}
               <Route path="*" element={ <NotFoundPage /> } />

@@ -32,6 +32,11 @@ class Suggestions {
     return rawMaterialSuggestions.data.map(({ id, name }) => ({ id, display: name }))
   }
 
+  async getApprovableUsers(q: string): Promise<SuggestionEntry[]> {
+    const users = await this.makeRequest<{ email: string }>(`auth/signup/get-approvable-requests?q=${q}`)
+    return users.data.map(({ email }) => ({ id: email, display: email }))
+  }
+
   async getProductSuggestions(q: string): Promise<SuggestionEntry[]> {
     type ProductInfo = { id: string, name: string, model: string, variant: string }
     const productSuggestions = await this.makeRequest<ProductInfo>(`manufacturing/search-products/?q=${q}`)
