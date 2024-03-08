@@ -16,6 +16,12 @@ const AddMachineForm = ({ onDone }: { onDone: () => void }) => {
       action={`${API_HOST}/procurement/add-machine`}
     >
       <input required={true} placeholder="Machine Name" name="name" />
+      <AutoCompleteInput
+        getSuggestions={(q) => ApiSuggestions.getProductSuggestions(q)}
+        name="makes"
+        placeholder="Search Product"
+        required
+      />
       <ArrayInput
         label="Consumes"
         child={(idx: number) => (
