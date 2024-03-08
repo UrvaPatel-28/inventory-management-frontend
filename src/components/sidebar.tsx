@@ -43,7 +43,8 @@ export const Sidebar = () => {
     return (
       <SidebarBtn
         label={btnInfo.label}
-        className={twMerge(rootPath === btnInfo.route && "bg-secondary")}
+        // TODO: review it
+        className={twMerge(rootPath === btnInfo.route && "bg-secondary", rootPath !== btnInfo.route && ' hover:bg-surface-variant')}
         navigateTo={btnInfo.route}
       />
     );

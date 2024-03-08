@@ -14,7 +14,7 @@ export const SidebarBtn = ({
     <Link
       to={navigateTo}
       className={twMerge(
-        "rounded-full p-4 hover:bg-surface-variant focus:bg-secondary",
+        "rounded-full p-4",
         className
       )}
     >
