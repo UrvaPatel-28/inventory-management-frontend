@@ -8,7 +8,7 @@ const SignUp = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="flex justify-center flex-col items-center h-screen">
+    <div className="flex grow justify-center flex-col items-center h-screen">
       <CustomForm
         action={`${API_HOST}/auth/signup`}
         className="custom-form"
