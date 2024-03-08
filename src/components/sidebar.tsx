@@ -1,0 +1,42 @@
+import { SidebarBtn } from "./sidebar-btn";
+
+export const Sidebar = () => {
+  const sidebarBtns = [
+    {
+      label: 'machine',
+      route: '/machine',
+    },
+    {
+      label: 'machine imports',
+      route: '/machine-imports',
+    },
+    {
+      label: 'raw material',
+      route: '/raw-material',
+    },
+    {
+      label: 'raw material import',
+      route: '/raw-material-import',
+    },
+    {
+      label: 'products',
+      route: '/products',
+    },
+    {
+      label: 'product manufacturing',
+      route: '/product-manufacturing',
+    },
+    {
+      label: 'sales',
+      route: '/sales',
+    },
+  ].map(btnInfo => {
+    return (<SidebarBtn label={btnInfo.label} navigateTo={btnInfo.route}/>);
+  });
+
+  return (
+  <div className="border-r-2 min-w-52 max-w-52 border-outline p-4 flex flex-col gap-1 h-full">
+    {sidebarBtns}
+  </div>
+  );
+}
