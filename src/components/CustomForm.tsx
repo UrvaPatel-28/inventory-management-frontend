@@ -42,8 +42,9 @@ const CustomForm = ({
       .then((r) => r.json())
       .then((json: ApiResponse<unknown>) => {
         if (json.success) {
+          formEl.reset();
+          setError(null);
           handleData(json, formEl);
-          setError(null)
         } else {
           setError(json.message);
         }
