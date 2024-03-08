@@ -7,7 +7,7 @@ const DataTable = ({ data }: { data: JSONObject[] }) => {
   }
   const keys = Object.keys(data[0]);
   return (
-    <table className="w-full table-auto h-full text-lg">
+    <table className="w-full table-auto h-fit text-lg">
       <thead>
         <tr className="divide-x-4 divide-outline">
           {keys.map((key) =>
