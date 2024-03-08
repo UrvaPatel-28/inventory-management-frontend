@@ -31,6 +31,13 @@ const ManufactureProductForm = ({ onDone }: { onDone: () => void }) => {
         placeholder="Search Machine"
         required
       />
+      <input 
+        type="number"
+        name="productAmount"
+        required
+        placeholder="Amount of Product Manufactured"
+        min={0}
+      />
       <ArrayInput
         label="Raw Materials Consumed"
         child={(index) => (
