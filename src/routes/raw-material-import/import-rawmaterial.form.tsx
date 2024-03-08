@@ -1,13 +1,16 @@
-import AutoCompleteInput from "../../../components/AutoCompleteInput";
-import CustomForm from "../../../components/CustomForm";
-import { ApiSuggestions } from "../../../lib/Api";
-import { API_HOST } from "../../../lib/Constants";
+import AutoCompleteInput from "../../components/AutoCompleteInput";
+import CustomForm from "../../components/CustomForm";
+import { ApiSuggestions } from "../../lib/Api";
+import { API_HOST } from "../../lib/Constants";
 
-const ImportRawMaterialForm = () => {
+const ImportRawMaterialForm = ({ onDone }: { onDone: () => void }) => {
   return (
     <CustomForm
       className="custom-form"
-      handleData={(e) => console.log(e)} // TODO: show notification
+      handleData={(e) => {
+        console.log(e);
+        onDone();
+      }} // TODO: show notification
       action={`${API_HOST}/procurement/import-raw-material`}
       method="POST"
     >

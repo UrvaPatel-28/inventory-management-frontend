@@ -1,13 +1,16 @@
-import CustomForm from "../../../components/CustomForm";
-import { API_HOST } from "../../../lib/Constants";
-import { ProductCategory } from "../../../lib/types/product-category.enum";
+import CustomForm from "../../components/CustomForm";
+import { API_HOST } from "../../lib/Constants";
+import { ProductCategory } from "../../lib/types/product-category.enum";
 
-const AddProductForm = () => {
+const AddProductForm = ({ onDone }: { onDone: () => void }) => {
   return (
     <CustomForm
       className="custom-form"
       method="POST"
-      handleData={(e) => console.log(e)} //TODO: show notification
+      handleData={(e) => {
+        console.log(e)
+        onDone()
+      }} //TODO: show notification
       action={`${API_HOST}/manufacturing/add-new-product`}
     >
       <input type="text" name="name" placeholder="Product Name" required />

@@ -1,15 +1,18 @@
-import ArrayInput from "../../../components/ArrayInput";
-import AutoCompleteInput from "../../../components/AutoCompleteInput";
-import CustomForm from "../../../components/CustomForm";
-import { ApiSuggestions } from "../../../lib/Api";
-import { API_HOST } from "../../../lib/Constants";
+import ArrayInput from "../../components/ArrayInput";
+import AutoCompleteInput from "../../components/AutoCompleteInput";
+import CustomForm from "../../components/CustomForm";
+import { ApiSuggestions } from "../../lib/Api";
+import { API_HOST } from "../../lib/Constants";
 
-const ManufactureProductForm = () => {
+const ManufactureProductForm = ({ onDone }: { onDone: () => void }) => {
   return (
     <CustomForm
       className="custom-form"
       method="POST"
-      handleData={(e) => console.log(e)} // TODO: show notification
+      handleData={(e) => {
+        console.log(e)
+        onDone()
+      }} // TODO: show notification
       action={`${API_HOST}/manufacturing/manufacture-product`}
     >
       <AutoCompleteInput
