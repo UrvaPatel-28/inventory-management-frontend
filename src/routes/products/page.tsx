@@ -5,7 +5,7 @@ import AddProductForm from "./add-product-form";
 const AddProductPage = () => {
   return <DataTableWithFabLayout
     formConstructor={(onDone) => <AddProductForm onDone={onDone} />}
-    url={`${API_HOST}:TODO:`}
+    url={`${API_HOST}/manufacturing/products`}
    />;
 };
 

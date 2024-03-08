@@ -5,7 +5,7 @@ const DataTableUrl = ({ url, update }: { url: string; update: number }) => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    fetch(url)
+    fetch(url, { credentials: "include" })
       .then((res) => res.json())
       .then((res) => {
         if (res.success) {

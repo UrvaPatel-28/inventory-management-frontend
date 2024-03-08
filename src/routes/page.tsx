@@ -1,13 +1,8 @@
-import DataTableWithFabLayout from "../components/DataTableWithFabLayout";
-import { API_HOST } from "../lib/Constants";
-import AddMachineForm from "./machine/add-machine-form";
-
 const RootIndexPage = () => {
   return (
-    <DataTableWithFabLayout
-      formConstructor={(onDone) => <AddMachineForm onDone={onDone} />}
-      url={`${API_HOST}/procurement/machines`}
-    />
+    <span className="text-3xl flex items-center justify-center grow">
+      Inventory Management System
+    </span>
   );
 };
 

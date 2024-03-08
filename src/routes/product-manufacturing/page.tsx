@@ -5,7 +5,7 @@ import ManufactureProductForm from "./manufacture-product-form";
 const ManufactureProductPage = () => {
   return <DataTableWithFabLayout
     formConstructor={(onDone) => <ManufactureProductForm onDone={onDone} />}
-    url={`${API_HOST}:TODO:`}
+    url={`${API_HOST}/manufacturing/manufactured-product`}
    />;
 };
 

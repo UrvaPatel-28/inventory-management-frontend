@@ -5,7 +5,7 @@ import AddSales from "./add-sales.form";
 const AddSalesPage = () => {
   return <DataTableWithFabLayout
     formConstructor={(onDone) => <AddSales onDone={onDone} />}
-    url={`${API_HOST}:TODO:`}
+    url={`${API_HOST}/sales`}
    />;
 };
 

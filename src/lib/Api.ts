@@ -15,23 +15,30 @@ type FailedApiResponse = {
 
 class Suggestions {
   private async makeRequest<T>(path: string): Promise<SuccessApiResponse<T[]>> {
-    const res = await fetch(`${API_HOST}/${path}`)
+    const res = await fetch(`${API_HOST}/${path}`, { credentials: "include" })
     if (res.status > 200) throw new Error('Request Failed')
     return await res.json()
   }
 
   async getMachineSuggestions(q: string): Promise<SuggestionEntry[]> {
-    const machineSuggestions = await this.makeRequest<{ id: string, name: string }>(`procurement/search-machine/?q=${q}`)
+    const machineSuggestions = await this.makeRequest<{ id: string, name: string }>(`procurement/machines/?q=${q}`)
     return machineSuggestions.data.map(({ id, name }) => ({ id, display: name }))
   }
 
-  async getRawMaterialSuggestions(q: string): Promise<SuggestionEntry[]> {
-    const rawMaterialSuggestions = await this.makeRequest<{ id: string, name: string }>(`procurement/search-raw-materials/?q=${q}`)
+  async getRawMaterialSuggestions(q: string, machine?: string): Promise<SuggestionEntry[]> {
+    const url = `procurement/raw-materials/?q=${q}`
+    const urlWithMachine = url + (machine ? `&machine=${machine}` : '')
+    const rawMaterialSuggestions = await this.makeRequest<{ id: string, name: string }>(urlWithMachine)
     return rawMaterialSuggestions.data.map(({ id, name }) => ({ id, display: name }))
   }
 
   async getProductSuggestions(q: string): Promise<SuggestionEntry[]> {
-    throw new Error('TODO:')
+    type ProductInfo = { id: string, name: string, model: string, variant: string }
+    const productSuggestions = await this.makeRequest<ProductInfo>(`manufacturing/search-products/?q=${q}`)
+    return productSuggestions.data.map(({ id, name, model, variant }) => ({
+      id,
+      display: `${name} ${model} ${variant}`
+    }))
   }
 }
 

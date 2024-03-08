@@ -5,7 +5,7 @@ import ImportRawMaterialForm from "./import-rawmaterial.form";
 const ImportRawMaterialPage = () => {
   return <DataTableWithFabLayout
     formConstructor={(onDone) => <ImportRawMaterialForm onDone={onDone} />}
-    url={`${API_HOST}:TODO:`}
+    url={`${API_HOST}/procurement/raw-material-imports`} //TODO: in backend
    />;
 };
 

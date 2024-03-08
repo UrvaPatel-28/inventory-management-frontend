@@ -1,3 +1,4 @@
+import { useState } from "react";
 import ArrayInput from "../../components/ArrayInput";
 import AutoCompleteInput from "../../components/AutoCompleteInput";
 import CustomForm from "../../components/CustomForm";
@@ -5,6 +6,8 @@ import { ApiSuggestions } from "../../lib/Api";
 import { API_HOST } from "../../lib/Constants";
 
 const ManufactureProductForm = ({ onDone }: { onDone: () => void }) => {
+  const [machine, setMachine] = useState<string>()
+
   return (
     <CustomForm
       className="custom-form"
@@ -24,6 +27,7 @@ const ManufactureProductForm = ({ onDone }: { onDone: () => void }) => {
       <AutoCompleteInput
         getSuggestions={(q) => ApiSuggestions.getMachineSuggestions(q)}
         name="machineId"
+        onValueSet={(machine) => setMachine(machine)}
         placeholder="Search Machine"
         required
       />
@@ -33,7 +37,7 @@ const ManufactureProductForm = ({ onDone }: { onDone: () => void }) => {
           <div className="flex grow">
             <AutoCompleteInput
               getSuggestions={(e) =>
-                ApiSuggestions.getRawMaterialSuggestions(e)
+                ApiSuggestions.getRawMaterialSuggestions(e, machine)
               }
               placeholder="Search Raw Material"
               name={`rawMaterialQuantityArray[${index}][rawMaterialId]`}

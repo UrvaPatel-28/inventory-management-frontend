@@ -10,8 +10,9 @@ import MachinePage from "./routes/machine/page";
 import MachineImportPage from "./routes/machine-imports/page";
 import ImportRawMaterialPage from "./routes/raw-material-import/page";
 import AddProductPage from "./routes/products/page";
-import ManufactureProductPage from "./routes/products-manufacturing/page";
+import ManufactureProductPage from "./routes/product-manufacturing/page";
 import AddSalesPage from "./routes/sales/page";
+import AddRawMaterialPage from "./routes/raw-material/page";
 
 function App() {
   const user = useSelector((state: RootState) => state.auth.value);
@@ -31,8 +32,12 @@ function App() {
               <Route path="/machine" element={<MachinePage />} />
               <Route path="/machine-imports" element={<MachineImportPage />} />
               <Route
-                path="/raw-material-imports"
+                path="/raw-material-import"
                 element={<ImportRawMaterialPage />}
+              />
+              <Route
+                path="/raw-material"
+                element={<AddRawMaterialPage />}
               />
 
               {/* MANUFACTURING */}

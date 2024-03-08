@@ -37,7 +37,9 @@ const AutoCompleteInput = ({
   placeholder,
   required,
   getSuggestions,
+  onValueSet,
 }: {
+  onValueSet?: (id: string) => void;
   getSuggestions: (query: string) => Promise<SuggestionEntry[]>;
   name: string;
   required?: boolean;
@@ -56,6 +58,7 @@ const AutoCompleteInput = ({
 
     uuidInputEl.value = e.id;
     displayInputEl.value = e.display;
+    onValueSet && onValueSet(e.id)
 
     setSugg([]);
   };

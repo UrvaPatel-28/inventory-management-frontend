@@ -5,7 +5,7 @@ import ImportMachine from "./import-machine.form";
 const MachineImportPage = () => {
   return <DataTableWithFabLayout
     formConstructor={(onDone) => <ImportMachine onDone={onDone} />}
-    url={`${API_HOST}:TODO:`}
+    url={`${API_HOST}/procurement/machine-imports`}
    />;
 };
 
