@@ -10,7 +10,7 @@ const Navbar = () => {
   return (
     <>
       <nav className="p-4 bg-primary-container flex text-on-primary-container">
-        <div className="text-white text-xl font-semibold">Inventory</div>
+        <div className="text-xl font-semibold">Inventory</div>
 
         <div className="ml-auto flex gap-4">
           <NavLink

@@ -12,7 +12,7 @@ const DataTable = ({ data }: { data: JSONObject[] }) => {
         <tr className="divide-x-4 divide-outline">
           {keys.map((key) =>
             key.endsWith("id") ? null : (
-              <th className="px-6 py-4 text-center text-on-primary-container bg-primary-container border-outline border-b-4 uppercase">
+              <th className="px-6 py-4 text-center text-on-primary-container/70 bg-primary-container/70 border-outline border-b-4 uppercase">
                 {key}
               </th>
             )
